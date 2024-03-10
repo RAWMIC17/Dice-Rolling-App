@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
 
-class DicePage extends StatelessWidget {
-  const DicePage({super.key});
+class DicePage extends StatefulWidget {
+  @override
+  State<DicePage> createState() => _DicePageState();
+}
 
+class _DicePageState extends State<DicePage> {
+  //const DicePage({super.key});
+  int leftDiceNumber = 2;
+  int rightDiceNumber = 3;
+// creating it once
   @override
   Widget build(BuildContext context) {
+    //int leftDiceNumber = 2; it will be created everytime build method is called
+    //but we can update our variable here with a new value
     return Center(
       child: Row(
         children: [
@@ -14,10 +23,14 @@ class DicePage extends StatelessWidget {
               child: //width: 200,
                   TextButton(
             onPressed: () {
-              print("Left dice pressed");
+              //print("Left dice pressed");
+              setState(() {
+                //calling build again
+                leftDiceNumber = 5;
+              });
             },
             child: Image.asset(
-              "lib/images/dice1.png",
+              "lib/images/dice$leftDiceNumber.png",
             ),
           )),
           Expanded(
@@ -26,10 +39,13 @@ class DicePage extends StatelessWidget {
               child: //width: 200,
                   TextButton(
             onPressed: () {
-              print("Right dice pressed");
+              //print("Right dice pressed");
+              setState(() {
+                rightDiceNumber = 6;
+              });
             },
             child: Image.asset(
-              "lib/images/dice2.png",
+              "lib/images/dice$rightDiceNumber.png",
             ),
           )),
         ],
